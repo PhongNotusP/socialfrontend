@@ -44,7 +44,8 @@ class FeedItem extends Component {
                     </div>
                     <div className="job_descp" style={{ wordBreak: "break-all" }}>
                         <p>{post.text}</p>
-                        {post.image ? (<img src={post.image} alt={post.text} />) : null}
+                        {post.image && post.extension ? (<img src={`https://drive.google.com/uc?export=view&id=${post.image}`} alt={post.text} />) : null}
+                        {post.image && !post.extension ? (<a href={`https://drive.google.com/uc?id=${post.image}`} download>Download file {post.fileName}</a>) : null}
 
                     </div>
                     <div className="job-status-bar">

@@ -6,17 +6,22 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Spinner from '../common/Spinner'
 import Feed from './Feed'
+const axios = require("axios");
+
 class Home extends Component {
   constructor() {
     super()
     this.state = {
       content: '',
       errors: {},
-      file: '',
-      imagePreviewUrl: '' ////////
+      imagePreviewUrl: '',
+      extension: false,
+      status: true,
+      fileName: ''
     }
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.onSubmitDisable = this.onSubmitDisable.bind(this);
   }
 
   onChange(e) {
@@ -27,14 +32,22 @@ class Home extends Component {
     e.preventDefault()
     const data = {
       text: this.state.content,
-      image: this.state.imagePreviewUrl
+      image: this.state.imagePreviewUrl,
+      extension: this.state.extension,
+      fileName: this.state.fileName
     }
     this.props.createPost(data)
     this.setState({
       content: '',
-      file: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: '',
+      extension: false,
+      fileName: ''
     })
+  }
+
+  onSubmitDisable(e) {
+    e.preventDefault()
+    alert('Đang upload hình đợi tý')
   }
 
   componentDidMount() {
@@ -53,19 +66,26 @@ class Home extends Component {
   }
 
   _handleImageChange(e) {
-    e.preventDefault()
+    e.preventDefault();
+    this.setState({ status: false })
+    const formData = new FormData();
+    formData.append('myImage', e.target.files[0]);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    };
+    axios.post("http://localhost:1234/api/stories/upload", formData, config)
+      .then((response) => {
 
-    let reader = new FileReader()
-    let file = e.target.files[0]
-
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
-      })
-    }
-
-    reader.readAsDataURL(file)
+        this.setState({
+          imagePreviewUrl: response.data.data.url,
+          status: true,
+          extension: response.data.data.extension,
+          fileName: response.data.data.originalname
+        })
+      }).catch((error) => {
+      });
   }
   //////////////
   render() {
@@ -75,15 +95,28 @@ class Home extends Component {
     let handleLoading
     let postLoading
     ///////////
-    let { imagePreviewUrl } = this.state
-    let $imagePreview = null
+    let { imagePreviewUrl, status } = this.state
+    let $imagePreview = null;
+    let fromSubmit = null;
     if (imagePreviewUrl) {
-      $imagePreview = <img src={imagePreviewUrl} />
+      $imagePreview = <img src={`https://drive.google.com/uc?export=view&id=${imagePreviewUrl}`} />
     } else {
       $imagePreview = (
         <div style={{ textAlign: "center", transform: "translate(0,250%)" }} className='previewText'> Chọn hình</div>
       )
     }
+    if (status) {
+      fromSubmit = (<li>
+        <a className='post_project'
+          onClick={this.onSubmit} type='submit' style={{ marginLeft: "10px" }}>Đăng bài viết</a>
+      </li>)
+    } else {
+      fromSubmit = (<li>
+        <a className='post_project'
+          onClick={this.onSubmitDisable} type='submit' style={{ marginLeft: "10px" }}>Đang upload</a>
+      </li>)
+    }
+
     //////////////
     if (!handle) {
       handleLoading = <Spinner />
@@ -115,31 +148,22 @@ class Home extends Component {
                 value={this.state.content}
               />
               <input
-                className='fileInput' style={{ paddingTop: "20px", border: "1px solid blue", width: "350px", height: "60px", transform: "translate(10%, 290%)" }}
+                className='fileInput'
+                name="myImage"
+                style={{ paddingTop: "20px", border: "1px solid blue", width: "350px", height: "60px", transform: "translate(10%, 290%)" }}
                 type='file'
                 onChange={e => this._handleImageChange(e)}
               />
-
               <p
                 className='text-danger'
                 style={{ width: '500px', wordBreak: 'break-all' }}>
                 {errors.content}</p>
-
-
-
-
               <div style={{ border: "1px solid red", transform: "translate(20%,-45%)", height: "120px", width: "120px" }} className="imgPreview">
                 {$imagePreview}
               </div>
-
-
-
               <div className='post-st'>
                 <ul>
-                  <li>
-                    <a className='post_project'
-                      onClick={this.onSubmit} type='submit' style={{ marginLeft: "10px" }}>Đăng bài viết</a>
-                  </li>
+                  {fromSubmit}
                 </ul>
                 <ul></ul>
               </div>
