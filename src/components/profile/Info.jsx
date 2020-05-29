@@ -27,36 +27,36 @@ class Info extends Component {
         </div>
       ));
     }
-    if (experience.length === 0) {
-      Experience = <h3>Chưa có thông tin</h3>;
-    } else {
-      Experience = experience.map((exp) => (
-        <div key={exp._id}>
-          <h4>
-            {exp.title} - {exp.company}
-          </h4>
-          <span>
-            {" "}
-            <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{" "}
-            {exp.current ? (
-              "Hiện tại"
-            ) : (
-              <Moment format="YYYY/MM/DD">{exp.to}</Moment>
-            )}
-          </span>
-          <p>{exp.description}</p>
-        </div>
-      ));
-    }
-    if (skills.length === 0) {
-      Skills = <li>Không có skills</li>;
-    } else {
-      Skills = skills.map((skill, index) => (
-        <li key={index}>
-          <a href="#!">{skill}</a>
-        </li>
-      ));
-    }
+    // if (experience.length === 0) {
+    //   Experience = <h3>Chưa có thông tin</h3>;
+    // } else {
+    //   Experience = experience.map((exp) => (
+    //     <div key={exp._id}>
+    //       <h4>
+    //         {exp.title} - {exp.company}
+    //       </h4>
+    //       <span>
+    //         {" "}
+    //         <Moment format="YYYY/MM/DD">{exp.from}</Moment> -{" "}
+    //         {exp.current ? (
+    //           "Hiện tại"
+    //         ) : (
+    //           <Moment format="YYYY/MM/DD">{exp.to}</Moment>
+    //         )}
+    //       </span>
+    //       <p>{exp.description}</p>
+    //     </div>
+    //   ));
+    // }
+    // if (skills.length === 0) {
+    //   Skills = <li>Không có skills</li>;
+    // } else {
+    //   Skills = skills.map((skill, index) => (
+    //     <li key={index}>
+    //       <a href="#!">{skill}</a>
+    //     </li>
+    //   ));
+    // }
     return (
       <div>
         <div className="user-profile-ov">
