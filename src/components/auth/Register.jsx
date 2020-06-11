@@ -23,11 +23,11 @@ class Register extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/");
-    }
-  }
+  // componentDidMount() {
+  //   if (this.props.auth.isAuthenticated) {
+  //     this.props.history.push("/");
+  //   }
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
@@ -58,75 +58,81 @@ class Register extends Component {
       loginLoading = <Spinner />;
     } else {
       loginLoading = (
-        <div className="save-stngs pd2">
-          <ul>
-            <li>
-              <button type="submit">Đăng ký</button>
-            </li>
-          </ul>
+        <div className="col-lg-12 no-pdd">
+          <button type="submit" value="submit">
+            Đăng ký
+          </button>
         </div>
       );
     }
     return (
-      <section className="profile-account-setting">
-        <div className="container">
-          <div className="account-tabs-setting">
+      <div className="sign_in_sec" id="tab-2">
+        <h3>Đăng ký</h3>
+        <div className="dff-tab current" id="tab-3">
+          <form onSubmit={this.onSubmit}>
             <div className="row">
-              <Sidebar />
-              <div className="col-lg-9">
-                <div className="tab-content">
-                  <div className="acc-setting">
-                    <h3>Đăng ký</h3>
-                    <form onSubmit={this.onSubmit}>
-                      <LoginForm
-                        label="Username đăng nhập"
-                        name="name"
-                        type="text"
-                        placeholder="Username"
-                        icon="fa fa-users"
-                        value={this.state.name}
-                        onChange={this.onChange}
-                        error={errors.name}
-                      />
-                      <LoginForm
-                        label="E-mail"
-                        name="email"
-                        type="email"
-                        placeholder="E-mail tài khoản"
-                        icon="fa fa-user"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                        error={errors.email}
-                      />
-                      <LoginForm
-                        label="Mật khẩu"
-                        name="password"
-                        type="password"
-                        placeholder="Mật khẩu tài khoản"
-                        icon="fa fa-lock"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                        error={errors.password}
-                      />
-                      <LoginForm
-                        label="Nhập lại mật khẩu"
-                        name="password2"
-                        type="password"
-                        placeholder="Xác nhận mật khẩu"
-                        icon="fa fa-lock"
-                        value={this.state.password2}
-                        onChange={this.onChange}
-                        error={errors.password2}
-                      />
-                      {loginLoading}
-                    </form>
-                  </div>
+              <div className="col-lg-12 no-pdd">
+                <div className="sn-field">
+                  <LoginForm
+                    label="Họ và tên"
+                    name="name"
+                    type="text"
+                    placeholder="Họ và tên"
+                    icon="fa fa-users"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                    error={errors.name}
+                  />
+                </div>
+              </div>
+              <div className="col-lg-12 no-pdd">
+                <div className="sn-field">
+                  <LoginForm
+                    label="E-mail"
+                    name="email"
+                    type="email"
+                    placeholder="E-mail tài khoản"
+                    icon="fa fa-user"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={errors.email}
+                  />
+                </div>
+              </div>
+              <div className="col-lg-12 no-pdd">
+                <div className="sn-field">
+                  <LoginForm
+                    label="Mật khẩu"
+                    name="password"
+                    type="password"
+                    placeholder="Mật khẩu tài khoản"
+                    icon="fa fa-lock"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    error={errors.password}
+                  />
+                </div>
+              </div>
+
+              <div className="col-lg-12 no-pdd">
+                <div className="sn-field">
+                  <LoginForm
+                    label="Nhập lại mật khẩu"
+                    name="password2"
+                    type="password"
+                    placeholder="Xác nhận mật khẩu"
+                    icon="fa fa-lock"
+                    value={this.state.password2}
+                    onChange={this.onChange}
+                    error={errors.password2}
+                  />
                 </div>
               </div>
             </div>
-          </div>
+            {loginLoading}
+          </form>
         </div>
-      </section>
+      </div>
     );
   }
 }

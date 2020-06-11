@@ -5,12 +5,13 @@ import { loginUser } from "../../actions/authActions";
 import LoginForm from "../form/LoginForm";
 import Sidebar from "./Sidebar";
 import Spinner from "../common/Spinner";
+import Register from "./Register";
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "test@gmail.com",
-      password: "tester123",
+      email: "",
+      password: "",
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -54,64 +55,100 @@ class Login extends Component {
       loginLoading = <Spinner />;
     } else {
       loginLoading = (
-        <div className="save-stngs pd2">
-          <ul style={{ textAlign: "center" }}>
-            <li>
-              <button type="submit" style={{ marginBottom: "-80px" }}>
-                Đăng nhập
-              </button>
-            </li>
-          </ul>
-          <a style={{ paddingLeft: "350px", color: "white" }} href="">
-            Quên mật khẩu?
-          </a>
+        <div className="col-lg-12 no-pdd">
+          <button
+            id="dangnhap"
+            type="submit"
+            onClick={() => {
+              this.handleSubscribe();
+            }}
+          >
+            Đăng nhập
+          </button>
         </div>
       );
     }
     return (
-      <section className="profile-account-setting">
-        <div className="container">
-          <div className="account-tabs-setting">
-            <div className="row">
-              <Sidebar />
-              <div className="col-lg-9">
-                <div className="tab-content">
-                  <div className="acc-setting">
-                    <h3 style={{ textAlign: "center" }}>Đăng nhập</h3>
-                    <h3 style={{ textAlign: "center" }}>Tài khoản test</h3>
-                    <p style={{ textAlign: "center" }}>
-                      E-mail: test@gmail.com
-                    </p>
-                    <p style={{ textAlign: "center" }}>Password: tester123</p>
-                    <form onSubmit={this.onSubmit}>
-                      <LoginForm
-                        label="E-mail"
-                        name="email"
-                        placeholder="E-mail tài khoản"
-                        icon="fa fa-user"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                        error={errors.email}
-                      />
-                      <LoginForm
-                        label="Mật khẩu"
-                        name="password"
-                        type="password"
-                        placeholder="Mật khẩu tài khoản"
-                        icon="fa fa-lock"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                        error={errors.password}
-                      />
-                      {loginLoading}
-                    </form>
+      <div className="sign-in">
+        <div className="wrapper" style={{ backgroundColor: "#d43535" }}>
+          <div className="sign-in-page">
+            <div className="signin-popup">
+              <div className="signin-pop">
+                <div className="row">
+                  <Sidebar />
+                  <div className="col-lg-6">
+                    <div className="login-sec">
+                      <ul className="sign-control">
+                        <li data-tab="tab-1" className="current">
+                          <a href="#" title="">
+                            Đăng nhập
+                          </a>
+                        </li>
+                        <li data-tab="tab-2">
+                          <a href="#" title="">
+                            Đăng ký
+                          </a>
+                        </li>
+                      </ul>
+                      <div className="sign_in_sec current" id="tab-1">
+                        <h3>Đăng nhập</h3>
+                        <form onSubmit={this.onSubmit}>
+                          <div className="row">
+                            <div className="col-lg-12 no-pdd">
+                              <div className="sn-field">
+                                <LoginForm
+                                  label="E-mail"
+                                  name="email"
+                                  placeholder="Nhập tên đăng nhập"
+                                  icon="fa fa-user"
+                                  value={this.state.email}
+                                  onChange={this.onChange}
+                                  error={errors.email}
+                                />
+                              </div>
+                            </div>
+                            <div className="col-lg-12 no-pdd">
+                              <div className="sn-field">
+                                <LoginForm
+                                  label="Mật khẩu"
+                                  name="password"
+                                  type="password"
+                                  placeholder="Mật khẩu tài khoản"
+                                  icon="fa fa-lock"
+                                  value={this.state.password}
+                                  onChange={this.onChange}
+                                  error={errors.password}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="col-lg-12 no-pdd">
+                              <div className="checky-sec">
+                                <div className="fgt-sec">
+                                  <input type="checkbox" name="cc" id="c1" />
+                                  <label>
+                                    <span></span>
+                                  </label>
+                                  <small>Ghi nhớ</small>
+                                </div>
+                                <a href="#" title="">
+                                  Quên mật khẩu?
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                          {loginLoading}
+                        </form>
+                      </div>
+                      <Register />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 }

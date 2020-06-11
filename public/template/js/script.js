@@ -1,6 +1,20 @@
 $(window).on("load", function() {
     "use strict";
 
+    
+
+    //  ============= POST PROJECT POPUP FUNCTION =========
+
+    $(".post_project").on("click", function(){
+        $(".post-popup.pst-pj").addClass("active");
+        $(".wrapper").addClass("overlay");
+        return false;
+    });
+    $(".post-project > a").on("click", function(){
+        $(".post-popup.pst-pj").removeClass("active");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
 
     //  ============= POST JOB POPUP FUNCTION =========
 
@@ -135,7 +149,7 @@ $(window).on("load", function() {
 
     //  ============= CREATE PORTFOLIO FUNCTION =========
 
-    $(".gallery_pt > a").on("click", function(){
+    $(".portfolio-btn > a").on("click", function(){
         $("#create-portfolio").addClass("open");
         $(".wrapper").addClass("overlay");
         return false;
@@ -204,15 +218,34 @@ $(window).on("load", function() {
 
     //  ============ Notifications Open =============
 
-    $(".not-box-open").on("click", function(){
-        $(this).next(".notification-box").toggleClass("active");
+    $(".not-box-open").on("click", function(){$("#message").hide();
+        $(".user-account-settingss").hide();
+        $(this).next("#notification").toggle();
     });
+
+     //  ============ Messages Open =============
+
+    $(".not-box-openm").on("click", function(){$("#notification").hide();
+        $(".user-account-settingss").hide();
+        $(this).next("#message").toggle();
+    });
+
 
     // ============= User Account Setting Open ===========
-
-    $(".user-info").on("click", function(){
-        $(this).next(".user-account-settingss").toggleClass("active");
+	/*
+$(".user-info").on("click", function(){$("#users").hide();
+        $(".user-account-settingss").hide();
+        $(this).next("#notification").toggle();
     });
+    
+	*/
+	$( ".user-info" ).click(function() {
+  $( ".user-account-settingss" ).slideToggle( "fast");
+	  $("#message").not($(this).next("#message")).slideUp();
+	  $("#notification").not($(this).next("#notification")).slideUp();
+    // Animation complete.
+  });
+ 
 
     //  ============= FORUM LINKS MOBILE MENU FUNCTION =========
 

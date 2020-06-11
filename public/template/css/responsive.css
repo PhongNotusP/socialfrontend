@@ -39,10 +39,20 @@
 	.acc-leftbar .nav-tabs > a {font-size: 14px;}
 	.notification-box {left: 100%;top: 0;}
 	nav ul ul {left: 50%;top: 0;border: 1px solid #e4e4e4;padding-left: 20px;padding-right: 20px;}
+	.sgt-text span {font-size: 12px;}
+	.helpforum a {padding: 10px 15px 10px 11px;}
+	.search-container button {margin-left: -4px;}
+	.settingjb ul li {
+    margin-right: 12px!important;
+}
+.usy-dt .reply {
+    width: 230px;
+}
 }
 
 
 @media (max-width: 991px) {
+	.sgt-text span {font-size: 14px;}
 	main {padding: 20px 0 60px 0;}
 	.user-specs span {font-size: 13px;}
 	.comment_box input {width: 275px;}
@@ -81,6 +91,12 @@
 	.profile-account-setting {margin-bottom: 50px;}
 	.profile-bx-info {margin-bottom: 25px;}
 	.profile-bx-details {margin-bottom: -25px;}
+	.search-container button {width: 8%;}
+	.helpforum a {padding: 10px 10px 10px 10px;}
+	.usy-dt .reply {
+		width: 450px;
+	}
+	
 }
 
 
@@ -107,6 +123,13 @@
 	.mf-field input {width: 100%;margin-bottom: 20px;}
 	.mf-field button {margin-left: 0;margin-bottom: 10px;}
 	.message-inner-dt > img {margin-bottom: 10px;}
+	.innertitle h2 {font-size: 26px;}
+	.search-container input[type=text] {width: 70%;}
+	.search-container button {width: 12%;}
+	.postcomment .form-control {width: 100%;margin-left: 0px;margin-top: 5px;}
+	.usy-dt .reply {width: 270px;}
+	.privacy i {margin-left: 10px;}
+	.bids-detail ul { display: block;}
 }
 
 
@@ -167,6 +190,30 @@
 	.user-account-settingss {right: auto;left: 0;}
 	.login-resources {text-align: left;}
 	.forum-bar ul li:last-child {margin-bottom: 0;}
+	.conversation-box {left: -20px;width: 280px;}
+	.innertitle {margin-top: 120px;}
+	.bennertext {left: 5%;right: 5%;}
+	.search-container input[type=text] {height: 45px;font-size: 16px;}
+	.search-container button {width: 12%; height: 45px;}
+	.devepbtn a{
+		display: inline-block;
+		margin-bottom: 5px;
+	}
+	.usy-dt .reply {
+    margin-bottom: 25px;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
+}
+    .replybtn{
+    	margin-left: 0px;
+}
+    .appliedjob ul{
+    	display:block;
+} 
+    .close{
+	    display: none;
+}
 }
 
 @media (max-width: 410px) {
@@ -182,4 +229,25 @@
 	.request-info {width: 100%;padding: 0;margin: 15px 0;}
 	.accept-feat {width: 100%;}
 	.requests-list {padding-bottom: 50px;}
+	.innertitle {margin-top: 100px;}
+	.sec-search{display: none;}
+	.searchtitle h2 {padding-bottom: 30px;}
+	.ed-opts > a {
+    position: absolute;
+}
+    .cadidatesbtn {
+    position: relative;
+}
+.place-bid-form .input-group input {
+    width: 60px;
+}
+.input-group-prepend {
+	width: 60px;
+}
+.delivery .input-group select {
+    width: 125px;
+}
+.custom-file-input {
+  margin-left: 0;
+}
 }
